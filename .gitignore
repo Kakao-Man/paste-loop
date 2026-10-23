@@ -1,0 +1,13 @@
+# Generated build and verification output
+dist/
+.checks/
+bin/
+obj/
+
+# Local editor and user settings
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+settings.txt
