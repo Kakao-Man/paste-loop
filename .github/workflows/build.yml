@@ -1,0 +1,30 @@
+name: Build Windows app
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build
+        shell: pwsh
+        run: .\build.ps1
+      - name: Verify without desktop input
+        shell: pwsh
+        run: .\verify.ps1
+      - name: Upload portable app
+        uses: actions/upload-artifact@v7
+        with:
+          name: PasteLoop-Windows
+          path: |
+            dist/PasteLoop.exe
+            README.md
+            LICENSE
+          if-no-files-found: error
